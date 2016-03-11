@@ -5,6 +5,7 @@ namespace SelrahcD\ActorRight;
 use SelrahcD\ActorRight\Actors\Actor;
 use SelrahcD\ActorRight\Actors\Human;
 use SelrahcD\ActorRight\Actors\System1;
+use SelrahcD\ActorRight\Actors\System2;
 
 final class User
 {
@@ -12,7 +13,10 @@ final class User
 
     public function changeName($newName, Actor $actor)
     {
-        if($actor != new Human && (new System1())->madeAction(NameWasChanged::class, $this->events))
+        if(
+            ($actor != new Human() && (new Human())->madeAction(NameWasChanged::class, $this->events))
+           || ($actor == new System2() && (new System1())->madeAction(NameWasChanged::class, $this->events))
+        )
         {
             return;
         }

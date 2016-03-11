@@ -85,11 +85,28 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
         ;
     }
 
+    /**
+     * @test
+     */
     public function a_human_can_change_a_name_set_by_a_human()
     {
         $user = new User();
         $user->changeName('Paul', new Human());
         $user->changeName('Alain', new Human());
+        $this->assertEquals(
+            'Alain',
+            $this->lastEventOfType(NameWasChanged::class, $user->releaseEvents())->name()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function system1_can_change_a_name_set_by_a_system1()
+    {
+        $user = new User();
+        $user->changeName('Paul', new System1());
+        $user->changeName('Alain', new System1());
         $this->assertEquals(
             'Alain',
             $this->lastEventOfType(NameWasChanged::class, $user->releaseEvents())->name()
