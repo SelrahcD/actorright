@@ -1,0 +1,18 @@
+{
+    "name": "selrahcd/actoright",
+    "require": {
+        "phpunit/phpunit": "~5.2"
+    },
+    "authors": [
+        {
+            "name": "SelrahcD",
+            "email": "c.desneuf@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SelrahcD\\ActorRight\\": "./src",
+            "tests\\acceptance\\SelrahcD\\ActorRight\\": "./tests/acceptance"
+        }
+    }
+}
