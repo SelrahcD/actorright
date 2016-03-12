@@ -3,18 +3,17 @@
 namespace SelrahcD\ActorRight;
 
 use SelrahcD\ActorRight\Actors\Actor;
-use SelrahcD\ActorRight\Actors\Human;
 use SelrahcD\ActorRight\Actors\System1;
 use SelrahcD\ActorRight\Actors\System2;
 
-final class User
+final class Human extends Actor
 {
     private $events = [];
 
     public function changeName($newName, Actor $actor)
     {
         if(
-            ($actor->isNot(new Human()) && (new Human())->caused(NameWasChanged::class, $this->events)) ||
+            ($actor->isNot(new self()) && (new self())->caused(NameWasChanged::class, $this->events)) ||
             ($actor->is(new System2()) && (new System1())->caused(NameWasChanged::class, $this->events))
         )
         {

@@ -2,10 +2,9 @@
 
 namespace tests\acceptance\SelrahcD\ActorRight;
 
-use SelrahcD\ActorRight\Actors\Human;
 use SelrahcD\ActorRight\Actors\System1;
 use SelrahcD\ActorRight\AgeWasChanged;
-use SelrahcD\ActorRight\User;
+use SelrahcD\ActorRight\Human;
 
 class ChangingAgeFeature extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +15,7 @@ class ChangingAgeFeature extends \PHPUnit_Framework_TestCase
      */
     public function an_actor_can_change_age_only_once()
     {
-        $user = new User();
+        $user = new Human();
         $user->changeAge(12, new System1());
         $user->changeAge(15, new Human());
         $user->changeAge(17, new System1());

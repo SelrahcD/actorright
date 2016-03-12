@@ -2,12 +2,10 @@
 
 namespace tests\acceptance\SelrahcD\ActorRight;
 
-
-use SelrahcD\ActorRight\Actors\Human;
 use SelrahcD\ActorRight\Actors\System1;
 use SelrahcD\ActorRight\Actors\System2;
 use SelrahcD\ActorRight\NameWasChanged;
-use SelrahcD\ActorRight\User;
+use SelrahcD\ActorRight\Human;
 
 class ChangingNameFeature extends \PHPUnit_Framework_TestCase
 {
@@ -18,7 +16,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function system1_can_change_user_name()
     {
-        $user = new User;
+        $user = new Human;
         $user->changeName('Charles', new System1);
         $this->assertEquals(
             'Charles',
@@ -31,7 +29,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function system2_can_change_user_name()
     {
-        $user = new User;
+        $user = new Human;
         $user->changeName('Roger', new System2);
         $this->assertEquals(
             'Roger',
@@ -44,7 +42,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function a_human_can_change_user_name()
     {
-        $user = new User;
+        $user = new Human;
         $user->changeName('Charles', new Human);
         $this->assertEquals(
             'Charles',
@@ -57,7 +55,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function system2_cannot_change_a_name_set_by_system1()
     {
-        $user = new User();
+        $user = new Human();
         $user->changeName('Charles', new System2());
         $user->changeName('Roger', new System1());
         $user->changeName('Paul', new System2());
@@ -72,7 +70,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function system1_and_system2_cant_change_a_name_set_by_a_human()
     {
-        $user = new User();
+        $user = new Human();
         $user->changeName('Charles', new System2());
         $user->changeName('Roger', new System1());
         $user->changeName('Paul', new System2());
@@ -90,7 +88,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function a_human_can_change_a_name_set_by_a_human()
     {
-        $user = new User();
+        $user = new Human();
         $user->changeName('Paul', new Human());
         $user->changeName('Alain', new Human());
         $this->assertEquals(
@@ -104,7 +102,7 @@ class ChangingNameFeature extends \PHPUnit_Framework_TestCase
      */
     public function system1_can_change_a_name_set_by_a_system1()
     {
-        $user = new User();
+        $user = new Human();
         $user->changeName('Paul', new System1());
         $user->changeName('Alain', new System1());
         $this->assertEquals(
