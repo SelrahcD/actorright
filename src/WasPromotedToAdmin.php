@@ -4,37 +4,25 @@ namespace SelrahcD\ActorRight;
 
 use SelrahcD\ActorRight\Actors\Actor;
 
-final class AgeWasChanged implements ActorTriggeredEvent
+final class WasPromotedToAdmin implements ActorTriggeredEvent
 {
-    /**
-     * @var
-     */
-    private $age;
-
     /**
      * @var Actor
      */
     private $actor;
 
     /**
-     * AgeWasChanged constructor.
-     * @param $age
+     * WasPromotedToAdmin constructor.
      * @param Actor $actor
      */
-    public function __construct($age, Actor $actor)
+    public function __construct(Actor $actor)
     {
-        $this->age = $age;
         $this->actor = $actor;
     }
 
     public function wasCausedBy(Actor $actor)
     {
         return $this->actor->is($actor);
-    }
-
-    public function age()
-    {
-        return $this->age;
     }
 
     public function wasCausedByActorOfType($type)

@@ -1,5 +1,5 @@
 <?php
-namespace tests\acceptance\SelrahcD\ActorRight;
+namespace SelrahcD\ActorRight;
 
 trait EventTestHelper
 {

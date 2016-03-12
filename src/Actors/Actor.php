@@ -1,8 +1,15 @@
 <?php
 namespace SelrahcD\ActorRight\Actors;
 
+
 abstract class Actor
 {
+
+    public static function ofType($type)
+    {
+        return new TypeComparator($type);
+    }
+
     public function caused($eventType, $events)
     {
         return !empty(array_filter($events, function ($event) use ($eventType) {
@@ -17,6 +24,16 @@ abstract class Actor
 
     public function isNot(Actor $actor)
     {
-        return $actor != $this;
+        return !$this->is($actor);
+    }
+
+    public function isOfType($type)
+    {
+        return get_class($this) === $type;
+    }
+
+    public function isNotOfType($type)
+    {
+        return !$this->isOfType($type);
     }
 }
