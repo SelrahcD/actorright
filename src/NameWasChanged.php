@@ -24,7 +24,7 @@ final class NameWasChanged implements ActorTriggeredEvent
         return $this->name;
     }
 
-    public function wasMadeBy(Actor $actor)
+    public function wasCausedBy(Actor $actor)
     {
         return $this->actor == $actor;
     }

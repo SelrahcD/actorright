@@ -27,7 +27,7 @@ final class AgeWasChanged implements ActorTriggeredEvent
         $this->actor = $actor;
     }
 
-    public function wasMadeBy(Actor $actor)
+    public function wasCausedBy(Actor $actor)
     {
         return $this->actor == $actor;
     }

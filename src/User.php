@@ -14,8 +14,8 @@ final class User
     public function changeName($newName, Actor $actor)
     {
         if(
-            ($actor != new Human() && (new Human())->madeAction(NameWasChanged::class, $this->events))
-           || ($actor == new System2() && (new System1())->madeAction(NameWasChanged::class, $this->events))
+            ($actor->isNot(new Human()) && (new Human())->caused(NameWasChanged::class, $this->events))
+           || ($actor->is(new System2()) && (new System1())->caused(NameWasChanged::class, $this->events))
         )
         {
             return;
@@ -26,7 +26,7 @@ final class User
 
     public function changeAge($newAge, Actor $actor)
     {
-        if($actor->madeAction(AgeWasChanged::class, $this->events))
+        if($actor->caused(AgeWasChanged::class, $this->events))
         {
             return;
         }

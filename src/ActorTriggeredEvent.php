@@ -5,5 +5,5 @@ use SelrahcD\ActorRight\Actors\Actor;
 
 interface ActorTriggeredEvent
 {
-    public function wasMadeBy(Actor $actor);
+    public function wasCausedBy(Actor $actor);
 }
