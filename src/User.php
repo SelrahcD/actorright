@@ -14,8 +14,8 @@ final class User
     public function changeName($newName, Actor $actor)
     {
         if(
-            ($actor->isNot(new Human()) && (new Human())->caused(NameWasChanged::class, $this->events))
-           || ($actor->is(new System2()) && (new System1())->caused(NameWasChanged::class, $this->events))
+            ($actor->isNot(new Human()) && (new Human())->caused(NameWasChanged::class, $this->events)) ||
+            ($actor->is(new System2()) && (new System1())->caused(NameWasChanged::class, $this->events))
         )
         {
             return;
