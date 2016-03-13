@@ -33,14 +33,6 @@ final class Human extends Actor
         return $newHuman;
     }
 
-
-    private function id()
-    {
-        $registrationEvent = $this->lastEventOfType(HumanIsRegistered::class, $this->events);
-
-        return $registrationEvent->id();
-    }
-
     public function changeName($newName, Actor $actor)
     {
         if(
@@ -94,10 +86,5 @@ final class Human extends Actor
     public function isAdmin()
     {
         return !empty($this->lastEventOfType(WasPromotedToAdmin::class, $this->events));
-    }
-
-    public function is(Actor $actor)
-    {
-        return $actor instanceof Human && $this->id() == $actor->id();
     }
 }

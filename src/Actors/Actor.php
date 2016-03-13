@@ -4,7 +4,6 @@ namespace SelrahcD\ActorRight\Actors;
 
 abstract class Actor
 {
-
     public static function ofType($type)
     {
         return new TypeComparator($type);
@@ -13,7 +12,7 @@ abstract class Actor
     public function caused($eventType, $events)
     {
         return !empty(array_filter($events, function ($event) use ($eventType) {
-            return $event instanceof $eventType && $event->wasCausedBy($this);
+            return $event instanceof $eventType && $event->actor() == $this;
         }));
     }
 

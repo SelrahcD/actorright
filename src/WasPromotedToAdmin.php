@@ -20,13 +20,8 @@ final class WasPromotedToAdmin implements ActorTriggeredEvent
         $this->actor = $actor;
     }
 
-    public function wasCausedBy(Actor $actor)
+    public function actor()
     {
-        return $this->actor->is($actor);
-    }
-
-    public function wasCausedByActorOfType($type)
-    {
-        return $this->actor->isOfType($type);
+        return $this->actor;
     }
 }

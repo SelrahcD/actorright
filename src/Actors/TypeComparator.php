@@ -12,14 +12,13 @@ final class TypeComparator
      */
     public function __construct($type)
     {
-
         $this->type = $type;
     }
 
     public function caused($eventType, $events)
     {
         return !empty(array_filter($events, function ($event) use ($eventType) {
-            return $event instanceof $eventType && $event->wasCausedByActorOfType($this->type);
+            return $event instanceof $eventType && get_class($event->actor()) === $this->type;
         }));
     }
 }
