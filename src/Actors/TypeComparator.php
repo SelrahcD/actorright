@@ -4,6 +4,8 @@ namespace SelrahcD\ActorRight\Actors;
 
 final class TypeComparator
 {
+    use TestOnEventsStream;
+
     private $type;
 
     /**
@@ -15,10 +17,8 @@ final class TypeComparator
         $this->type = $type;
     }
 
-    public function caused($eventType, $events)
+    private function actorTest($actor)
     {
-        return !empty(array_filter($events, function ($event) use ($eventType) {
-            return $event instanceof $eventType && get_class($event->actor()) === $this->type;
-        }));
+        return get_class($actor) === $this->type;
     }
 }

@@ -4,16 +4,16 @@ namespace SelrahcD\ActorRight\Actors;
 
 abstract class Actor
 {
+    use TestOnEventsStream;
+
     public static function ofType($type)
     {
         return new TypeComparator($type);
     }
 
-    public function caused($eventType, $events)
+    private function actorTest($actor)
     {
-        return !empty(array_filter($events, function ($event) use ($eventType) {
-            return $event instanceof $eventType && $event->actor() == $this;
-        }));
+        return $actor == $this;
     }
 
     public function is(Actor $actor)
